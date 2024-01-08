@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ComplectPlus.Models.Сomponent>
+
+@{
+    ViewData["Title"] = "Комплектующие";
+}
+
+<h1>Комплектующие</h1>
+<p>@ViewBag.Category</p>
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.CategoryId">Добавить</a>    |
+    <a asp-controller="Categories" asp-action="Index">Возврат к категориям </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComponentsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearRelease)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturers)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComponentsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearRelease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturers.ManufacturerName)
+            </td>
+            <td>
+                    <a asp-action="Index" asp-controller="Otchet" asp-route-id="@item.ComponentId">Отчет</a> |
+                <a asp-action="Edit" asp-route-id="@item.ComponentId">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.ComponentId">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.ComponentId">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

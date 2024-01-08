@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ComplectPlus.Models.Issuance>
+
+@{
+    ViewData["Title"] = "Выдача";
+}
+
+<h1>Выдача</h1>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ComponentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateIssuance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Staffs)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComponentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateIssuance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staffs.Surname)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.IssuanceId">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.IssuanceId">Детали</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IssuanceId">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ComplectPlus.Models.Manufacturer>
+
+@{
+    ViewData["Title"] = "Производители";
+}
+
+<h1>Производители</h1>
+
+<p>
+    <a asp-action="Create">Добавить</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturerPName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufacturerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufacturerPName)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.ManufacturerId">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.ManufacturerId">Детали</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ManufacturerId">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
